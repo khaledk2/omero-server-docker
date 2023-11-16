@@ -21,10 +21,10 @@ cleanup || true
 
 
 docker build -t $IMAGE  .
-docker run -d --name $PREFIX-db -e POSTGRES_PASSWORD=postgres postgres:10
+docker run --privileged -d --name $PREFIX-db -e POSTGRES_PASSWORD=postgres postgres:14
 
 # Check both CONFIG_environment and *.omero config mounts work
-docker run -d --name $PREFIX-server --link $PREFIX-db:db \
+docker run --privileged -d --name $PREFIX-server --link $PREFIX-db:db \
     -p 4064 \
     -e CONFIG_omero_db_user=postgres \
     -e CONFIG_omero_db_pass=postgres \
