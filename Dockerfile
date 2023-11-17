@@ -2,9 +2,9 @@ FROM rockylinux:9
 LABEL maintainer="ome-devel@lists.openmicroscopy.org.uk"
 
 RUN dnf -y install epel-release
+RUN dnf update -y
 RUN dnf install -y glibc-langpack-en
 ENV LANG en_US.utf-8
-
 
 RUN mkdir /opt/setup
 WORKDIR /opt/setup
