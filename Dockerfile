@@ -10,7 +10,7 @@ RUN mkdir /opt/setup
 WORKDIR /opt/setup
 ADD playbook.yml requirements.yml /opt/setup/
 
-RUN dnf -y install ansible sudo ca-certificates
+#RUN dnf -y install ansible sudo ca-certificates
 
 RUN ansible-galaxy install -p /opt/setup/roles -r requirements.yml \
     && dnf -y clean all \
