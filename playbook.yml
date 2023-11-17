@@ -1,6 +1,9 @@
 - hosts: localhost
   roles:
-  - role: ome.omero_server
+  - name: ome.omero_server
+    src: https://github.com/khaledk2/ansible-role-omero-server
+    version: fix_include
+  # - role: ome.omero_server
   vars:
     java_versions: ["11"]
     omero_server_database_manage: False
