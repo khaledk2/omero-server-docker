@@ -1,9 +1,10 @@
-FROM rockylinux:9
+FROM eniocarboni/docker-rockylinux-systemd:latest
 LABEL maintainer="ome-devel@lists.openmicroscopy.org.uk"
 
 RUN dnf -y install epel-release
 RUN dnf install -y glibc-langpack-en
 ENV LANG en_US.utf-8
+
 
 RUN mkdir /opt/setup
 WORKDIR /opt/setup
