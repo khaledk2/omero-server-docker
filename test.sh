@@ -19,9 +19,11 @@ fi
 
 cleanup || true
 
-
+echo "building the docker image: $IMAGE"
 docker build -t $IMAGE  .
-docker run -d --name $PREFIX-db -e POSTGRES_PASSWORD=postgres postgres:14
+echo "image has been built, goint to run the docker container  ====>>>>"
+docker run -d --name $PREFIX-db -e POSTGRES_PASSWORD=postgres postgres:16
+echo "docker container has been run, $PREFIX-db"
 
 # Check both CONFIG_environment and *.omero config mounts work
 docker run -d --name $PREFIX-server --link $PREFIX-db:db \
