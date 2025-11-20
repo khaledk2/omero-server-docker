@@ -7,5 +7,5 @@ cd /opt/omero/server
 echo "test from here..."
 echo "Starting OMERO.server"
 echo "$omero"
-echo exec $omero admin start --foreground
+exec $omero admin start --foreground
 echo "DONE !"
