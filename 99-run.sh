@@ -7,5 +7,8 @@ cd /opt/omero/server
 echo "test from here..."
 echo "Starting OMERO.server"
 echo "$omero"
-exec $omero admin start --foreground
+output=$($omero admin start --foreground)
+echo "The output is:"
+echo "$output"
+#exec $omero admin start --foreground
 echo "DONE !"
