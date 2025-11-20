@@ -5,7 +5,7 @@ RUN dnf -y install epel-release
 RUN dnf -y update
 RUN dnf install -y glibc-langpack-en
 RUN dnf install -y blosc
-RUN dnf install -y curl jq git --allowerasing
+#RUN dnf install -y curl jq git --allowerasing
 ENV LANG=en_US.utf-8
 ENV RHEL_FRONTEND=noninteractive
 RUN mkdir /opt/setup
@@ -21,7 +21,7 @@ ARG OMERO_VERSION=5.6.16
 ARG OMEGO_ADDITIONAL_ARGS=
 ENV OMERODIR=/opt/omero/server/OMERO.server
 
-RUN ansible-playbook playbook.yml -vvv -e 'ansible_python_interpreter=/usr/bin/python3'\
+RUN ansible-playbook playbook.yml -vvv \
     -e omero_server_release=$OMERO_VERSION \
     -e omero_server_omego_additional_args="$OMEGO_ADDITIONAL_ARGS"
 
