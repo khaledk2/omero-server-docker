@@ -5,7 +5,7 @@ RUN dnf -y install epel-release
 RUN dnf -y update
 RUN dnf install -y glibc-langpack-en
 RUN dnf install -y blosc
-RUN dnf install -y curl jq git
+RUN dnf install -y curl jq git --allowerasing
 ENV LANG=en_US.utf-8
 ENV RHEL_FRONTEND=noninteractive
 RUN mkdir /opt/setup
