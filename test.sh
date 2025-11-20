@@ -22,7 +22,7 @@ cleanup || true
 echo "BULIDING THE IMAGE"
 
 docker build -t $IMAGE  .
-echo ("IMAGE HAS BEEN BUILT, GOING TO RUN THE CONTAINER")
+echo "IMAGE HAS BEEN BUILT, GOING TO RUN THE CONTAINER"
 output= $(docker run -d --name $PREFIX-db -e POSTGRES_PASSWORD=postgres postgres:16)
 echo "OUTPUT 2"
 echo $output
