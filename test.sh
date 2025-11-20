@@ -44,16 +44,20 @@ export OMERO_PASS=omero-root-password
 export PREFIX
 
 # Login to server
+echo "testing login ===>>>"
 bash test_login.sh
+echo "testing config ...... ===>>>"
 
 # Check the Docker OMERO configuration system
 bash test_config.sh
 
 # Wait a minute to ensure other servers are running
-sleep 60
+sleep 160
 # Now that we know the server is up, test Dropbox
 
+echo "test test_dropbox ====>>>>>>>"
 bash test_dropbox.sh
 
 # And Processor (slave-1)
+echo "testing test_processor =============+>>>"
 bash test_processor.sh
