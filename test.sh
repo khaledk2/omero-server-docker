@@ -19,12 +19,16 @@ fi
 
 cleanup || true
 
+echo "BULIDING THE IMAGE"
 
 docker build -t $IMAGE  .
-docker run -d --name $PREFIX-db -e POSTGRES_PASSWORD=postgres postgres:16
+echo ("IMAGE HAS BEEN BUILT, GOING TO RUN THE CONTAINER")
+output= $(docker run -d --name $PREFIX-db -e POSTGRES_PASSWORD=postgres postgres:16)
+echo "OUTPUT 2"
+echo $output
 
 # Check both CONFIG_environment and *.omero config mounts work
-docker run -d --name $PREFIX-server --link $PREFIX-db:db \
+out2=(docker run -d --name $PREFIX-server --link $PREFIX-db:db \
     -p 4064 \
     -e CONFIG_omero_db_user=postgres \
     -e CONFIG_omero_db_pass=postgres \
@@ -32,10 +36,14 @@ docker run -d --name $PREFIX-server --link $PREFIX-db:db \
     -e CONFIG_custom_property_fromenv=fromenv \
     -e ROOTPASS=omero-root-password \
     -v $PWD/test-config/config.omero:/opt/omero/server/config/config.omero:ro \
-    $IMAGE
+    $IMAGE)
+
+echo($out2)
 
 # Smoke tests
-echo docker ps
+out3=(docker ps)
+echo "OUT 3"
+echo $out3
 export OMERO_USER=root
 export OMERO_PASS=omero-root-password
 export OMERO_PASS=omero-root-password
