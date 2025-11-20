@@ -35,7 +35,7 @@ docker run -d --name $PREFIX-server --link $PREFIX-db:db \
     $IMAGE
 
 # Smoke tests
-docker logs -f $PREFIX-server
+docker ps
 export OMERO_USER=root
 export OMERO_PASS=omero-root-password
 export PREFIX
