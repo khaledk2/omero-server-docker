@@ -36,8 +36,9 @@ docker run -d --name $PREFIX-server --link $PREFIX-db:db \
     -v $PWD/test-config/config.omero:/opt/omero/server/config/config.omero:ro \
     $IMAGE
 
+echo "Container $PREFIX-server has been run for $IMAGE"
 # Smoke tests
-
+echo "Testing is going to be performed ..."
 export OMERO_USER=root
 export OMERO_PASS=omero-root-password
 export PREFIX
