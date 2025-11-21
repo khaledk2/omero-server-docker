@@ -5,8 +5,8 @@
 
 set -eu
 
- omego=/opt/omero/server/venv3/bin/omego
-# omego=/opt/omero/server/OMERO.server/bin/omego
+omero=/opt/omero/server/venv3/bin/omero
+omego=/opt/omero/server/venv3/bin/omego
 cd /opt/omero/server
 
 CONFIG_omero_db_host=${CONFIG_omero_db_host:-}
