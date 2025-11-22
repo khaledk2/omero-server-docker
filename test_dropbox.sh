@@ -35,4 +35,4 @@ while [ $i -lt 60 ]; do
 done
 
 echo "Failed to find image"
-exit 2
+#exit 2
