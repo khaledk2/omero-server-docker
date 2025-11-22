@@ -1,5 +1,7 @@
 #!/bin/bash
 
+/opt/omero/server/venv3/bin/pip install setuptools
+
 set -eu
 
 omero=/opt/omero/server/venv3/bin/omero
