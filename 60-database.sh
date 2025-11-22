@@ -42,5 +42,5 @@ psql -w -h "$DBHOST" -p "$DBPORT" -U "$DBUSER" "$DBNAME" -c \
     $omego db upgrade --serverdir=OMERO.server
 } || {
     echo "Initialising database"
-    $omego db init --rootpass "$ROOTPASS" --serverdir=/opt/omero/server/OMERO.server
+    $omego db init --rootpass "$ROOTPASS" --serverdir="/opt/omero/server/OMERO.server"
 }
