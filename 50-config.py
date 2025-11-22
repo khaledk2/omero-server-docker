@@ -9,9 +9,9 @@ from subprocess import call
 from re import sub
 
 
-omero = '/opt/omero/server/venv3/bin/omero'
+OMERO = '/opt/omero/server/venv3/bin/omero'
 
-rc = call([omero, 'load', '--glob', '/opt/omero/server/config/*.omero'])
+rc = call([OMERO, 'load', '--glob', '/opt/omero/server/config/*.omero'])
 assert rc == 0
 
 for (k, v) in os.environ.items():
@@ -20,5 +20,5 @@ for (k, v) in os.environ.items():
         prop = sub('([^_])_([^_])', r'\1.\2', prop)
         prop = sub('__', '_', prop)
         value = v
-        rc = call([omero, 'config', 'set', '--', prop, value])
+        rc = call([OMERO, 'config', 'set', '--', prop, value])
         assert rc == 0
