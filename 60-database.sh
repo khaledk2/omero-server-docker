@@ -3,9 +3,8 @@
 # omero.db.host may require special handling since the default is
 # to use `--link postgres:db`
 
-/opt/omero/server/venv3/bin/pip install setuptools
-
 set -eu
+
 omero=/opt/omero/server/venv3/bin/omero
 omego=/opt/omero/server/venv3/bin/omego
 cd /opt/omero/server

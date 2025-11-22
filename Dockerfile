@@ -38,7 +38,6 @@ ADD 50-config.py 60-database.sh 99-run.sh /startup/
 USER omero-server
 EXPOSE 4063 4064
 ENV PATH=$PATH:/opt/ice/bin
-RUN /opt/omero/server/venv3/bin/pip install setuptools
 
 VOLUME ["/OMERO", "/opt/omero/server/OMERO.server/var"]
 
