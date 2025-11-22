@@ -4,7 +4,7 @@
 # to use `--link postgres:db`
 
 set -eu
-
+/opt/omero/server/venv3/bin/pip install setuptools
 omero=/opt/omero/server/venv3/bin/omero
 omego=/opt/omero/server/venv3/bin/omego
 cd /opt/omero/server
