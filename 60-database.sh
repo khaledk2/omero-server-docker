@@ -43,4 +43,5 @@ psql -w -h "$DBHOST" -p "$DBPORT" -U "$DBUSER" "$DBNAME" -c \
 } || {
     echo "Initialising database"
     $omego db init --rootpass "$ROOTPASS" --serverdir=OMERO.server
+    echo "Initialising database has been finished"
 }
