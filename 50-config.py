@@ -11,7 +11,7 @@ from re import sub
 
 omero = '/opt/omero/server/venv3/bin/omero'
 
-rc = call([OMERO, 'load', '--glob', '/opt/omero/server/config/*.omero'])
+rc = call([omero, 'load', '--glob', '/opt/omero/server/config/*.omero'])
 assert rc == 0
 
 for (k, v) in os.environ.items():
