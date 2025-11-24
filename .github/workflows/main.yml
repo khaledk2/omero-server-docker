@@ -19,7 +19,7 @@ jobs:
     if: startsWith(github.ref, 'refs/tags')
     runs-on: ubuntu-24.04
     env:
-      name: openmicroscopy/omero-server
+      name: khaledk2/omero-server
     steps:
       - name: Get other tags
         id: gettags
@@ -38,10 +38,12 @@ jobs:
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Push to Docker Hub
         uses: docker/build-push-action@v5
         with:
           tags: ${{ join(fromJson(steps.gettags.outputs.tags)) }}
           labels: ${{ steps.meta.outputs.labels }}
           push: true
+
+
