@@ -1,7 +1,7 @@
 ---
 name: Build
 
-on:
+on: 
   push:
   pull_request:
   schedule:
@@ -19,7 +19,7 @@ jobs:
     if: startsWith(github.ref, 'refs/tags')
     runs-on: ubuntu-24.04
     env:
-      name: khaledk2/omero-server312
+      name: khaledk2/omero-server
     steps:
       - name: Get other tags
         id: gettags
@@ -38,67 +38,10 @@ jobs:
         uses: docker/login-action@v3
         with:
           username: khaledk2
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Push to Docker Hub
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v5
         with:
           tags: ${{ join(fromJson(steps.gettags.outputs.tags)) }}
           labels: ${{ steps.meta.outputs.labels }}
           push: true
-
-
-
----
-name: Build
-
-on: 
-  push:
-  pull_request:
-  schedule:
-    - cron: '0 0 * * 0'
-
-jobs:
-  build:
-    runs-on: ubuntu-24.04
-    steps:
-      - uses: actions/checkout@v4
-      - name: Test
-        run: ./test.sh
-  upload:
-    needs: build
-    if: startsWith(github.ref, 'refs/tags')
-    runs-on: ubuntu-latest
-    env:
-      name: khaledk2/omero-server
-    steps:
-      - name: Get prefix
-        id: getprefix
-        run: |
-          if [ ! -z ${{ env.name }} ]; then
-            echo "prefix=${{ env.name }}:" >> $GITHUB_OUTPUT
-          else
-            echo "prefix=${{ github.repository }}:" >> $GITHUB_OUTPUT
-          fi
-      - name: Get other tags
-        id: gettags
-        uses: jupyterhub/action-major-minor-tag-calculator@v1.1.0
-        with:
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
-          prefix: "${{ steps.getprefix.outputs.prefix }}"
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-      - uses: actions/checkout@v2
-      - name: Login to DockerHub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-      - name: display docker account
-        run: echo ${{ secrets.DOCKER_LOGIN }}
-      - name: Build and push
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: Dockerfile
-          push: true
-          tags: ${{ join(fromJson(steps.gettags.outputs.tags)) }}
