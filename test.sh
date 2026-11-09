@@ -47,10 +47,12 @@ bash test_login.sh
 bash test_config.sh
 
 # Wait a minute to ensure other servers are running
-sleep 150
+sleep 60
 # Now that we know the server is up, test Dropbox
 
+echo "testing dropbox ==============>>>>>>>"
 bash test_dropbox.sh
 
 # And Processor (slave-1)
+echo "testing test_processor ==============>>>>>>>"
 bash test_processor.sh
