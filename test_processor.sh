@@ -18,6 +18,11 @@ echo "2222222222222222222222222222222"
 docker exec $PREFIX-server sh -c \
     "touch /tmp/$FILENAME && $OMERO import -d $dataset_id /tmp/$FILENAME"
 echo "3333333333333333333333333333333"
+containers=docker ps
+stopped_containers=docker ps -a
+echo "$containers"
+echo "$stopped_containers"
+
 docker exec $PREFIX-server $OMERO script launch $SCRIPT IDs=$dataset_id
 echo "44444444444444444444444444444444"
 echo "Completed with code $?"
