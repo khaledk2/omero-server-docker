@@ -21,7 +21,7 @@ cleanup || true
 
 
 docker build -t $IMAGE  .
-docker run -d --name $PREFIX-db -e POSTGRES_PASSWORD=postgres postgres:16
+docker run -d --name $PREFIX-db -e POSTGRES_PASSWORD=postgres postgres:14
 
 # Check both CONFIG_environment and *.omero config mounts work
 docker run -d --name $PREFIX-server --link $PREFIX-db:db \
@@ -35,8 +35,6 @@ docker run -d --name $PREFIX-server --link $PREFIX-db:db \
     $IMAGE
 
 # Smoke tests
-# Wait a minute to ensure other servers are running
-sleep 150
 
 export OMERO_USER=root
 export OMERO_PASS=omero-root-password
@@ -48,6 +46,8 @@ bash test_login.sh
 # Check the Docker OMERO configuration system
 bash test_config.sh
 
+# Wait a minute to ensure other servers are running
+sleep 60
 # Now that we know the server is up, test Dropbox
 
 bash test_dropbox.sh
