@@ -35,6 +35,8 @@ docker run -d --name $PREFIX-server --link $PREFIX-db:db \
     $IMAGE
 
 # Smoke tests
+# Wait a minute to ensure other servers are running
+sleep 60
 
 export OMERO_USER=root
 export OMERO_PASS=omero-root-password
@@ -46,13 +48,9 @@ bash test_login.sh
 # Check the Docker OMERO configuration system
 bash test_config.sh
 
-# Wait a minute to ensure other servers are running
-sleep 60
 # Now that we know the server is up, test Dropbox
 
-echo "testing dropbox ==============>>>>>>>"
 bash test_dropbox.sh
 
 # And Processor (slave-1)
-echo "testing test_processor ==============>>>>>>>"
 bash test_processor.sh
