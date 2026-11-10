@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM rockylinux:9.3
 LABEL maintainer="ome-devel@lists.openmicroscopy.org.uk"
 
 RUN dnf -y install epel-release
