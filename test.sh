@@ -40,6 +40,8 @@ export OMERO_USER=root
 export OMERO_PASS=omero-root-password
 export PREFIX
 
+
+sleep 120
 # Login to server
 bash test_login.sh
 
